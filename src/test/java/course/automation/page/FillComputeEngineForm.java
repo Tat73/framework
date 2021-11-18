@@ -43,7 +43,7 @@ public class FillComputeEngineForm extends AbstractPage {
     @FindBy(xpath = "//div[@class='md-text']")
     private WebElement clickOnSoftwareOptions;
 
-    @FindBy(xpath = "//*[@class='md-input-has-placeholder flex md-input-has-value']")
+    @FindBy(xpath = "//md-select[@placeholder='VM Class']")
     private WebElement clickOnMachineClass;
 
     @FindBy(xpath = "//*[@id='select_99']")
@@ -170,6 +170,7 @@ public class FillComputeEngineForm extends AbstractPage {
 
     public FillComputeEngineForm choseMachineClass(String machineClass) {
         wait.until(ExpectedConditions.elementToBeClickable(clickOnMachineClass)).click();
+
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(String.format(MACHINE_CLASS_XPATH, machineClass)))));
         WebElement choseClass = driver.findElement(By.xpath(String.format(MACHINE_CLASS_XPATH, machineClass)));
         choseClass.click();
