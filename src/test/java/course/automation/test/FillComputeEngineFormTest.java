@@ -27,7 +27,7 @@ public class FillComputeEngineFormTest extends CommonConditions {
                 .newFrame()
                 .clickOnComputeEngine()
                 .inputNumberOfInstances(input.getNumberOfInstances())
-                .choseSoftware(input.getOperationSystem())
+//                .choseSoftware(input.getOperationSystem())
                 .choseMachineClass(input.getMachineClass())
                 .choseSeriesOfInstanceType(input.getInstanceSeries())
                 .choseInstanceType(input.getInstanceType())
