@@ -102,6 +102,7 @@ public class FillComputeEngineForm extends AbstractPage {
     @FindBy(xpath = "//*[@class='md-raised md-primary cpc-button md-button md-ink-ripple' and contains(text(),'Send Email')]")
     private WebElement clickToSendInformationOnEmail;
 
+
     public FillComputeEngineForm(WebDriver driver) {
         super(driver);
     }
