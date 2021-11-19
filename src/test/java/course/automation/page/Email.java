@@ -39,9 +39,10 @@ public class Email extends AbstractPage {
         return this;
     }
 
-    public Email openEmailBox() {
+    public Email openEmailBox(String email) {
         wait.until(ExpectedConditions.visibilityOf(checkEmail));
-        checkEmail.sendKeys(Keys.ENTER);
+        checkEmail.sendKeys(Keys.CLEAR);
+        checkEmail.sendKeys(email, Keys.ENTER);
 
         new WebDriverWait(driver, 50).until(ExpectedConditions
                 .frameToBeAvailableAndSwitchToIt(changeBoxMailFrame));
