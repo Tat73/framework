@@ -27,49 +27,49 @@ public class FillComputeEngineFormTest extends CommonConditions {
                 .newFrame()
                 .clickOnComputeEngine()
                 .inputNumberOfInstances(input.getNumberOfInstances())
-//                .choseSoftware(input.getOperationSystem())
+                .choseSoftware(input.getOperationSystem())
                 .choseMachineClass(input.getMachineClass())
                 .choseSeriesOfInstanceType(input.getInstanceSeries())
                 .choseInstanceType(input.getInstanceType())
                 .choseGPUButton()
-//                .choseGRUsType(input.getGPUType())
-//                .choseGRUsNumber(input.getNumberOfGPUs())
+                .choseGRUsType(input.getGPUType())
+                .choseGRUsNumber(input.getNumberOfGPUs())
                 .inputLocalSSD(input.getLocalSSD())
                 .choseDatacenterLocation(input.getLocation())
                 .choseCommitedUsage(input.getCommitedUsage())
-                .addToEstimateButton();
-//                .clickOnEmailButton();
+                .addToEstimateButton()
+                .clickOnEmailButton();
 
         Assert.assertEquals(fillComputeEngineForm.getEstimatedComponentCostValue(), "Total Estimated Cost: USD 1,084.69 per 1 month");
 
-//        String sumFromCalculator = fillComputeEngineForm.getEstimatedComponentCostValue();
-//
-//        ((JavascriptExecutor) driver).executeScript("window.open()");
-//        List<String> tabs = new ArrayList<>(driver.getWindowHandles());
-//        driver.switchTo().window(tabs.get(1));
-//        driver.get("https://yopmail.com/");
-//        fillComputeEngineForm.waitForPageLoad();
-//
-//        fillComputeEngineForm
-//                .generateRandomEmail()
-//                .copyEmail();
-//        String newEmail = fillComputeEngineForm.getEmailString();
-//
-//        driver.switchTo().window(tabs.get(0));
-//        driver.switchTo().frame(0);
-//        driver.switchTo().frame("myFrame");
-//
-//        log.info("frame 'myframe' is switched ");
-//        fillComputeEngineForm
-//                .inputEmailToCalculator(newEmail);
-//
-//        Email email = new Email(driver);
-//        email
-//                .openEmailPage()
-//                .openEmailBox(newEmail);
-//
-//        Assert.assertEquals("Total Estimated Cost: " + email.getTotalCost() + " per 1 month",
-//                sumFromCalculator);
+        String sumFromCalculator = fillComputeEngineForm.getEstimatedComponentCostValue();
+
+        ((JavascriptExecutor) driver).executeScript("window.open()");
+        List<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        driver.get("https://yopmail.com/");
+        fillComputeEngineForm.waitForPageLoad();
+
+        fillComputeEngineForm
+                .generateRandomEmail()
+                .copyEmail();
+        String newEmail = fillComputeEngineForm.getEmailString();
+
+        driver.switchTo().window(tabs.get(0));
+        driver.switchTo().frame(0);
+        driver.switchTo().frame("myFrame");
+
+        log.info("frame 'myframe' is switched ");
+        fillComputeEngineForm
+                .inputEmailToCalculator(newEmail);
+
+        Email email = new Email(driver);
+        email
+                .openEmailPage()
+                .openEmailBox(newEmail);
+
+        Assert.assertEquals("Total Estimated Cost: " + email.getTotalCost() + " per 1 month",
+                sumFromCalculator);
 
     }
 }
