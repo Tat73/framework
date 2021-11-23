@@ -2,11 +2,7 @@ package course.automation.page;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,17 +12,18 @@ import java.time.Duration;
 public class FillComputeEngineForm extends AbstractPage {
 
     private static final String HOMEPAGE_URL = "https://cloud.google.com/";
-    private WebDriverWait wait = new WebDriverWait(driver, 40);
+    private WebDriverWait wait = new WebDriverWait(driver, 50);
     private Logger log = LogManager.getRootLogger();
 
-    private static final String LOCATION_XPATH = "//*[@id='select_container_108']//*[@class='md-text ng-binding' and contains(text(),'%s')]";
-    private static final String SSD_XPATH = "//div[@id='select_container_413']//div[@class='md-text ng-binding' and contains(text(),'%s')]";
-    private static final String COMMITED_USAGE_XPATH = "//*[@id='select_container_115']//div[@class='md-text' and contains(text(),'%s')]";
-    private static final String GRU_NUMBER_XPATH = "//*[@id='select_container_453']//div[@class='md-text ng-binding' and contains(text(),'%s')]";
-    private static final String GRU_TYPE_XPATH = "//*[@class='md-select-menu-container md-active md-clickable']//div[@class='md-text ng-binding' and contains(text(),'%s')]";
-    private static final String INSTANCE_TYPE_XPATH = "//div[@class='md-text ng-binding' and contains(text(),'%s')]";
-    private static final String MACHINE_CLASS_XPATH = "//*[@id='select_container_92']//div[@class='md-text' and contains(text(),'%s')]";
-    private static final String SOFTWARE_XPATH = "//div[@class='md-text' and contains(text(),'%s')]";
+    private static final String LOCATION_XPATH = "//*[@class='md-select-menu-container cpc-region-select md-active md-clickable']//*[@class='md-text ng-binding' and contains(text(),'%s')]";
+    private static final String SSD_XPATH = "//*[@class='md-select-menu-container md-active md-clickable']//div[@class='md-text ng-binding' and contains(text(),'%s')]";
+    private static final String COMMITED_USAGE_XPATH = "//*[@class='md-select-menu-container md-active md-clickable']//div[@class='md-text' and contains(text(),'%s')]";
+    private static final String GRU_NUMBER_XPATH = "//*[@id='select_container_454']//div[@class='md-text ng-binding' and contains(text(),'%s')]";
+    private static final String GRU_TYPE_XPATH = "//*[@class='ng-scope md-ink-ripple']//*[@class='md-text ng-binding' and contains(text(),'%s')]";
+    private static final String INSTANCE_SERIES_XPATH = "//*[@class='md-text ng-binding' and contains(text(),'%s')]";
+    private static final String INSTANCE_TYPE_XPATH = "//*[@ng-repeat='instance in typeInfo']//*[@class='md-text ng-binding'  and contains(text(),'%s')]";
+    private static final String MACHINE_CLASS_XPATH = "//*[@id='select_container_93']//div[@class='md-text' and contains(text(),'%s')]";
+    private static final String SOFTWARE_XPATH = "//*[@class='md-text' and contains(text(),'%s')]";
 
     @FindBy(xpath = "//input[@name='q']")
     private WebElement search;
@@ -37,19 +34,19 @@ public class FillComputeEngineForm extends AbstractPage {
     @FindBy(xpath = "//div[@class='name ng-binding' and text()='Compute Engine']")
     private WebElement clickOnComputeEngine;
 
-    @FindBy(xpath = "//*[@id='input_74']")
+    @FindBy(xpath = "//*[@name='quantity']")
     private WebElement inputNumberOfInstances;
 
-    @FindBy(xpath = "//div[@class='md-text']")
+    @FindBy(xpath = "//*[@id='select_value_label_67']")
     private WebElement clickOnSoftwareOptions;
 
-    @FindBy(xpath = "//md-select[@placeholder='VM Class']")
+    @FindBy(xpath = "//*[@class='md-input-has-placeholder flex md-input-has-value']")
     private WebElement clickOnMachineClass;
 
-    @FindBy(xpath = "//*[@id='select_99']")
+    @FindBy(xpath = "//*[@name='series']")
     private WebElement clickOnSeries;
 
-    @FindBy(xpath = "//*[@id='select_101']")
+    @FindBy(xpath = "//*[@placeholder='Instance type']")
     private WebElement clickOnMachineType;
 
     @FindBy(xpath = "//div[@class='md-label' and contains(text(),'Add GPUs.')]")
@@ -58,22 +55,22 @@ public class FillComputeEngineForm extends AbstractPage {
     @FindBy(xpath = "//div[@class='md-label' and contains(text(),'Add Sustained Use Discounts.')]")
     private WebElement clickOnSUD;
 
-    @FindBy(xpath = "//*[@aria-label='GPU type']")
+    @FindBy(xpath = "//*[@placeholder='GPU type']")
     private WebElement clickToChoseGPUsType;
 
-    @FindBy(xpath = "//*[@id='select_value_label_449']")
+    @FindBy(xpath = "//*[@placeholder='Number of GPUs']")
     private WebElement entryGRUsNumber;
 
-    @FindBy(xpath = "//*[@id='select_value_label_411']")
+    @FindBy(xpath = "//*[@placeholder='Local SSD']")
     private WebElement clickOnLocalSSD;
 
-    @FindBy(xpath = "//*[@id='select_value_label_72']")
+    @FindBy(xpath = "//*[@placeholder='Datacenter location']")
     private WebElement clickOnDatacenterLocation;
 
-    @FindBy(xpath = "//*[@id='select_114']")
+    @FindBy(xpath = "//*[@placeholder='Committed usage']")
     private WebElement clickOnCommitedUsage;
 
-    @FindBy(xpath = "//button[@ng-click='listingCtrl.addComputeServer(ComputeEngineForm);' and contains(text(),'Add to Estimate')]")
+    @FindBy(xpath = "//button[@class='md-raised md-primary cpc-button md-button md-ink-ripple' and contains(text(),'Add to Estimate')]")
     private WebElement clickOnButton;
 
     @FindBy(xpath = "//b[@class='ng-binding' and contains(text(),'Total Estimated Cost')]")
@@ -183,8 +180,8 @@ public class FillComputeEngineForm extends AbstractPage {
 
     public FillComputeEngineForm choseSeriesOfInstanceType(String seriesOfInstanceType) {
         wait.until(ExpectedConditions.elementToBeClickable(clickOnSeries)).click();
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(String.format(INSTANCE_TYPE_XPATH, seriesOfInstanceType)))));
-        WebElement choseSet = driver.findElement(By.xpath(String.format(INSTANCE_TYPE_XPATH, seriesOfInstanceType)));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(String.format(INSTANCE_SERIES_XPATH, seriesOfInstanceType)))));
+        WebElement choseSet = driver.findElement(By.xpath(String.format(INSTANCE_SERIES_XPATH, seriesOfInstanceType)));
 
         choseSet.click();
 
