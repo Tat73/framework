@@ -65,7 +65,7 @@ public class FillComputeEngineForm extends AbstractPage {
     @FindBy(xpath = "//*[@placeholder='Number of GPUs']")
     private WebElement entryGRUsNumber;
 
-    @FindBy(xpath = "//*[@placeholder='Local SSD']")
+    @FindBy(xpath = "//*[@id='select_value_label_412']")
     private WebElement clickOnLocalSSD;
 
     @FindBy(xpath = "//*[@placeholder='Datacenter location']")
