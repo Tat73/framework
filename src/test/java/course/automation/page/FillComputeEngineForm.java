@@ -19,9 +19,9 @@ public class FillComputeEngineForm extends AbstractPage {
     private WebDriverWait wait = new WebDriverWait(driver, 50);
     private Logger log = LogManager.getRootLogger();
 
-    private static final String LOCATION_XPATH = "//*[@class='md-select-menu-container cpc-region-select md-active md-clickable']//*[@class='md-text ng-binding' and contains(text(),'%s')]";
-    private static final String SSD_XPATH = "//*[@class='md-select-menu-container md-active md-clickable']//div[@class='md-text ng-binding' and contains(text(),'%s')]";
-    private static final String COMMITED_USAGE_XPATH = "//*[@class='md-select-menu-container md-active md-clickable']//div[@class='md-text' and contains(text(),'%s')]";
+    private static final String LOCATION_XPATH = "//*[@id='select_container_109']//*[@class='md-text ng-binding' and contains(text(),'%s')]";
+    private static final String SSD_XPATH = "//*[@id='select_container_414']//div[@class='md-text ng-binding' and contains(text(),'%s')]";
+    private static final String COMMITED_USAGE_XPATH = "//*[@id='select_container_116']//div[@class='md-text' and contains(text(),'%s')]";
     private static final String GRU_NUMBER_XPATH = "//*[@id='select_container_454']//div[@class='md-text ng-binding' and contains(text(),'%s')]";
     private static final String GRU_TYPE_XPATH = "//*[@class='ng-scope md-ink-ripple']//*[@class='md-text ng-binding' and contains(text(),'%s')]";
     private static final String INSTANCE_SERIES_XPATH = "//*[@class='md-text ng-binding' and contains(text(),'%s')]";
@@ -71,7 +71,7 @@ public class FillComputeEngineForm extends AbstractPage {
     @FindBy(xpath = "//*[@placeholder='Datacenter location']")
     private WebElement clickOnDatacenterLocation;
 
-    @FindBy(xpath = "//*[@placeholder='Committed usage']")
+    @FindBy(xpath = "//*[@aria-label='Committed usage: None']")
     private WebElement clickOnCommitedUsage;
 
     @FindBy(xpath = "//button[@class='md-raised md-primary cpc-button md-button md-ink-ripple' and contains(text(),'Add to Estimate')]")
